@@ -4,18 +4,26 @@ from django.db import models
 
 
 
+class Process(models.Model):
+    status = models.TextField(blank=True,null=True)
+
+    def __str__(self) -> str:
+        return self.status
+
+
+
 class Project(models.Model):
-    developer = models.CharField(max_length=50)
-    developer_i = models.ImageField(upload_to='projects', null=True, blank=True)
+    developer_image = models.ImageField(upload_to='images', null=True, blank=True)
+    developer_name = models.CharField(max_length=50)
     project_name = models.CharField(max_length=250)
-    process = models.CharField(max_length=250)
-    start_d = models.IntegerField()
-    end_d = models.IntegerField()
+    project_image = models.ImageField(upload_to='images', null=True, blank=True)
+    start_day = models.DateField()
+    end_day = models.DateField()
     info = models.CharField(max_length=500)
+    process = models.ForeignKey(Process, on_delete=models.CASCADE, null=True)
 
-
-class AdditionalInfo(models.Model):
-    definition = models.TextField(blank=True,null=True)
+    def __str__(self):
+        return self.project_name
 
 
 
