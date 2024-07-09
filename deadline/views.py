@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import generics, mixins, viewsets
 from .serializers import ProjectSerializer, ProcessSerializer, DomainSerializer
 from .models import Project, Process, Domain
+from .filters import ProjectFilter
 # Create your views here.
 
 
@@ -12,7 +13,8 @@ class ProjectViewSet(mixins.RetrieveModelMixin,
 ):
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
-
+    filter_backends = [DjangoFilterBackend]
+    filterset_class = ProjectFilter
 
 
 class ProcessListView(generics.ListAPIView):
