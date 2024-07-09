@@ -27,6 +27,10 @@ class Project(models.Model):
 
 
 
+class Domain(models.Model):
+    filed = models.CharField(max_length=50)
+    project = models.ForeignKey(Project, on_delete=models.CASCADE, null=True)
+
 
 
 

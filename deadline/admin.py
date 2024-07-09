@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Project, Process
+from .models import Project, Process, Domain
 
 # Register your models here.
 
@@ -12,6 +12,8 @@ class ProjectAdmin(admin.ModelAdmin):
     list_display = ('project_name', 'developer_name', 'start_day', 'end_day')
     search_fields = ('project_name', 'developer_name')
     list_filter = ('start_day', 'end_day')
+
+admin.site.register(Domain)
 
 # @admin.register(AdditionalInfo)
 # class AdditionalInfoAdmin(admin.ModelAdmin):
