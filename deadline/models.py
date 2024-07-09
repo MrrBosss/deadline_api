@@ -25,7 +25,7 @@ class Project(models.Model):
     start_day = models.DateField()
     end_day = models.DateField()
     info = models.CharField(max_length=500)
-    process = models.ForeignKey(Process, on_delete=models.CASCADE, null=True)
+    process = models.ManyToManyField(Process)
 
     def __str__(self):
         return self.project_name

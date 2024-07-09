@@ -1,10 +1,12 @@
 from rest_framework import serializers 
-from django.contrib.auth import get_user_model
 from .models import Project, Process, Domain
 
 
 
-User = get_user_model()
+class ProjectSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Project
+        fields = '__all__'
 
 
 
@@ -15,10 +17,10 @@ class ProcessSerializer(serializers.ModelSerializer):
 
 
 
-class ProjectSerializer(serializers.ModelSerializer):
+class ProjectCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Project
-        fields = '__all__'
+        fields = ['project_name','project_image','start_day','end_day','info']
 
 
 
