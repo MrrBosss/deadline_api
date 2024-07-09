@@ -38,12 +38,15 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework_simplejwt.token_blacklist',
+    
     'django_filters',
     'rest_framework_simplejwt',
     'drf_spectacular',
     # internal apps
     'api',
     'deadline',
+    'users',
 ]
 
 MIDDLEWARE = [
@@ -54,7 +57,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-]
+] # hoz kelaman kodimni korichi bu create ni manikiga qarab qivorasiz createapi view ishlatasiz va serializer yozasiz
 
 ROOT_URLCONF = 'mainhome.urls'
 
@@ -112,7 +115,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Tashkent'
 
 USE_I18N = True
 
@@ -132,26 +135,30 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 REST_FRAMEWORK = { 
     'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
         'rest_framework.authentication.TokenAuthentication',
         'rest_framework.authentication.SessionAuthentication',
     ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+        # Other permissions as needed
+    ),
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.BasicAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-    ],
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     'PAGE_SIZE': 10,
+    'DEFAULT_PARSER_CLASSES': (
+        'rest_framework.parsers.JSONParser',
+        'rest_framework.parsers.MultiPartParser',
+    ),
+
     
 }
 
 SIMPLE_JWT = {
     "AUTH_HEADER-TYPES": ["Bearer"],
-    "AUTH_TOKEN_LIFETIME":datetime.timedelta(seconds=30),#minutes =5
-    "REFRESH_TOKEN_LIFETIME":datetime.timedelta(minutes=1),# days = 1
+    "AUTH_TOKEN_LIFETIME":datetime.timedelta(hours=1),#minutes = 5
+    "REFRESH_TOKEN_LIFETIME":datetime.timedelta(days=7),# days = 1
 }
-
 
 SPECTACULAR_SETTINGS = {
     'TITLE': 'Deadline Api',
@@ -159,6 +166,10 @@ SPECTACULAR_SETTINGS = {
     'VERSION': '1.0.0',
     'SERVE_INCLUDE_SCHEMA': False,
     'SCHEMA_PATH_PREFIX': '/api/v1/',
+    'COMPONENT_SPLIT_REQUEST': True,
 
     # Additional settings as needed
 }
+MEDIA_ROOT='images/'
+MEDIA_URL='/media/'
+AUTH_USER_MODEL = "users.User"

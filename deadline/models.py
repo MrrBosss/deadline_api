@@ -4,6 +4,11 @@ from django.db import models
 
 
 
+# class Developer(models.Model):
+#     owner = models.CharField(max_length=50)
+
+
+
 class Process(models.Model):
     status = models.TextField(blank=True,null=True)
 

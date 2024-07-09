@@ -11,4 +11,5 @@ router.register('projects', ProjectViewSet, basename='project')
 urlpatterns = router.urls
 urlpatterns += [
     path('process-list/', ProcessListView.as_view(), name='process-list'),
+    path('users/', include('users.urls')),
 ]
