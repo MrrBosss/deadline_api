@@ -1,10 +1,11 @@
 from rest_framework.routers import DefaultRouter
 from django.urls import path, include
-from deadline.views import ProjectViewSet, ProcessListView, DomainViewSet, ProjectCreateApiView
+from deadline.views import ProjectViewSet, ProcessListView, DomainViewSet, ProjectCreateApiView, DeveloperViewSet
 
 
 
 router = DefaultRouter()
+router.register('developers', DeveloperViewSet, basename='developers')
 router.register('domains', DomainViewSet, basename='domains')
 router.register('projects', ProjectViewSet, basename='project')
 # router.register('process-list', ProcessListView, basename='process-list')
