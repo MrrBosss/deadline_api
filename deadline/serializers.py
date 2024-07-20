@@ -1,16 +1,10 @@
 from rest_framework import serializers 
-from .models import Project, Task, Department, Job
+from .models import Project, Task, Job
 
 
 class JobSerializer(serializers.ModelSerializer):
     class Meta:
         model = Job
-        fields = '__all__'
-
-
-class DepartmentSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Department
         fields = '__all__'
 
 

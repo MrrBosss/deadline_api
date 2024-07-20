@@ -1,8 +1,8 @@
 from rest_framework.routers import DefaultRouter
 from django.urls import path, include
 
-from deadline.views import ProjectViewSet, TaskListView, DepartmentListView, JobListView
-
+from deadline.views import ProjectViewSet, TaskListView, JobListView
+from users.views import DepartmentListView
 
 
 router = DefaultRouter()

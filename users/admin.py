@@ -5,8 +5,9 @@ from django.utils.translation import gettext_lazy as _
 
 from .forms import UserAdminChangeForm
 from .forms import UserAdminCreationForm
-from .models import User
+from .models import User, Department
 
+admin.site.register(Department)
 
 @admin.register(User)
 class UserAdmin(auth_admin.UserAdmin):

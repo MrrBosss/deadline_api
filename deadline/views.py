@@ -1,8 +1,8 @@
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import generics, mixins, viewsets
 
-from .serializers import ProjectSerializer, TaskSerializer, DepartmentSerializer, JobSerializer
-from .models import Project, Task, Job, Department
+from .serializers import ProjectSerializer, TaskSerializer, JobSerializer
+from .models import Project, Task, Job
 from .filters import ProjectFilter
 # Create your views here.
 
@@ -10,13 +10,7 @@ from .filters import ProjectFilter
 class JobListView(generics.ListAPIView):
     queryset = Job.objects.all()
     serializer_class = JobSerializer
-    http_method_names = ['get']
-
-
-class DepartmentListView(generics.ListAPIView):
-    queryset = Department
-    serializer_class = DepartmentSerializer
-    http_method_names = ['get']
+    # http_method_names = ['get']
 
 
 class ProjectViewSet(mixins.RetrieveModelMixin,
@@ -32,6 +26,6 @@ class ProjectViewSet(mixins.RetrieveModelMixin,
 class TaskListView(generics.ListAPIView):
     queryset = Task.objects.all()
     serializer_class = TaskSerializer
-    http_method_names = ['get']
+    # http_method_names = ['get']
 
 

@@ -16,12 +16,6 @@ def upload_to(instance, filename):
     return f'{date_str}/{filename}'
 
 
-class Department(models.Model):
-    name = models.CharField(max_length=50,null=True)
-
-    def __str__(self):
-        return self.name
-
 class Task(models.Model):
     name = models.CharField(max_length=50,null=True)
 
