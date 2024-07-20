@@ -22,6 +22,10 @@ class Status(models.Model):
 
     def __str__(self):
         return self.name
+    
+    class Meta:
+        verbose_name = 'Jarayon'
+        verbose_name_plural = 'Jarayonlar'
 
 
 class Job(models.Model):
@@ -29,6 +33,10 @@ class Job(models.Model):
 
     def __str__(self):
         return self.name
+    
+    class Meta:
+        verbose_name = 'Ish turi'
+        verbose_name_plural = 'Ish turlari'
     
 
 class Project(models.Model):  

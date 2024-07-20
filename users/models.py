@@ -8,6 +8,10 @@ class Department(Model):
     
     def __str__(self):
         return str(self.name)
+    
+    class Meta:
+        verbose_name = "Bo'lim"
+        verbose_name_plural = "Bo'limlar"
 
 
 class User(AbstractUser):
@@ -26,3 +30,7 @@ class User(AbstractUser):
 
     def __str__(self):
         return str(self.name)
+    
+    class Meta:
+        verbose_name = 'Foydalanuvchi'
+        verbose_name_plural = 'Foydalanuvchilar'
