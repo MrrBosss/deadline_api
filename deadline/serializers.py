@@ -1,5 +1,5 @@
 from rest_framework import serializers 
-from .models import Project, Task, Job
+from .models import Project, Status, Job
 
 
 class JobSerializer(serializers.ModelSerializer):
@@ -10,7 +10,7 @@ class JobSerializer(serializers.ModelSerializer):
 
 class TaskSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Task
+        model = Status
         fields = '__all__'
 
 

@@ -5,7 +5,7 @@ from django.db.models import CharField, ImageField, Model, CASCADE, ForeignKey
 
 class Department(Model):
     name = CharField(max_length=50,null=True)
-
+    
     def __str__(self):
         return str(self.name)
 

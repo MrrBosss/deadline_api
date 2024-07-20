@@ -1,7 +1,8 @@
 from django.contrib.auth import forms as admin_forms
 from django.utils.translation import gettext_lazy as _
+from django import forms
 
-from .models import User
+from .models import User, Department
 
 
 class UserAdminChangeForm(admin_forms.UserChangeForm):
@@ -20,3 +21,9 @@ class UserAdminCreationForm(admin_forms.UserCreationForm):
         error_messages = {
             "username": {"unique": _("This username has already been taken.")},
         }
+
+
+class DepartmentForm(forms.ModelForm):
+    class Meta:
+        model = Department
+        fields = '__all__' 
