@@ -7,25 +7,39 @@ from .filters import ProjectFilter
 # Create your views here.
 
 
-class JobListView(generics.ListAPIView):
-    queryset = Job.objects.all()
-    serializer_class = JobSerializer
-    # http_method_names = ['get']
+class ProjectCreateView(generics.CreateAPIView):
+    queryset = Project.objects.all()
+    serializer_class = ProjectSerializer
 
 
-class ProjectViewSet(mixins.RetrieveModelMixin,
-                        mixins.ListModelMixin,
-                        viewsets.GenericViewSet
-):
+class ProjectListView(generics.ListAPIView):
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
     filter_backends = [DjangoFilterBackend]
     filterset_class = ProjectFilter
 
 
+class ProjectUpdateView(generics.UpdateAPIView):
+    queryset = Project.objects.all()
+    serializer_class = ProjectSerializer
+
+
+class ProjectDestroyView(generics.DestroyAPIView):
+    queryset = Project.objects.all()
+    serializer_class = ProjectSerializer
+
+
+class ProjectDetailView(generics.RetrieveAPIView):
+    queryset = Project.objects.all()
+    serializer_class = ProjectSerializer
+    
+
 class TaskListView(generics.ListAPIView):
     queryset = Status.objects.all()
     serializer_class = TaskSerializer
-    # http_method_names = ['get']
 
+
+class JobListView(generics.ListAPIView):
+    queryset = Job.objects.all()
+    serializer_class = JobSerializer
 
