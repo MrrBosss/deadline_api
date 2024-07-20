@@ -1,30 +1,9 @@
 from django.db import models
+from django.contrib.auth import get_user_model
 from datetime import datetime
+
 # Create your models here.
-
-
-
-class Developer(models.Model):
-    developer_image = models.ImageField(upload_to='images', null=True, blank=True)
-    developer_name = models.CharField(max_length=50)
-
-    def __str__(self):
-        return str(self.developer_name)
-    
-    class Meta:
-        verbose_name = 'Dasturchi'
-        verbose_name_plural = 'Dasturchilar'
-
-
-class Process(models.Model):
-    status = models.TextField(blank=True,null=True)
-
-    def __str__(self):
-        return self.status
-
-    class Meta:
-        verbose_name = 'Jarayon'
-        verbose_name_plural = 'Jarayonlar'
+User = get_user_model()
 
 
 def upload_to(instance, filename):
@@ -37,32 +16,45 @@ def upload_to(instance, filename):
     return f'{date_str}/{filename}'
 
 
-class Domain(models.Model):
-    field = models.CharField(max_length=50)
+class Department(models.Model):
+    name = models.CharField(max_length=50,null=True)
 
     def __str__(self):
-        return str(self.field)
+        return self.name
+
+class Task(models.Model):
+    name = models.CharField(max_length=50,null=True)
+
+    def __str__(self):
+        return self.name
+
+
+class Job(models.Model):
+    name = models.CharField(max_length=50,null=True)
+
+    def __str__(self):
+        return self.name
     
-    class Meta:
-        verbose_name = "Yo'nalish"
-        verbose_name_plural = "Yo'nalishlar"
 
-
-class Project(models.Model):
-    developer = models.ManyToManyField(Developer)
-    project_name = models.CharField(max_length=250)
-    project_image = models.ImageField(upload_to=upload_to, null=True, blank=True)
+class Project(models.Model):  
+    name = models.CharField(max_length=250,null=True)
+    image = models.ImageField(upload_to=upload_to, null=True)
     start_day = models.DateField()
     end_day = models.DateField()
     created_at = models.DateTimeField(auto_now_add=True, null=True)
-    info = models.CharField(max_length=500)
-    process = models.ManyToManyField(Process)
-    domain = models.ForeignKey(Domain, on_delete=models.CASCADE, null=True)
+    direction = models.CharField(max_length=100, null=True)
+    description = models.TextField(max_length=500, null=True)
+    user = models.ForeignKey(User,on_delete=models.CASCADE, null=True, blank=True)
+    job = models.ManyToManyField(Job)
+    task = models.ForeignKey(Task, on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
-        return self.project_name
-
+        return self.name
+    
     class Meta:
         verbose_name = 'Proyekt'
         verbose_name_plural = 'Proyektlar'
         
+
+
+    

@@ -1,11 +1,22 @@
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import generics, mixins, viewsets
 
-from .serializers import ProjectSerializer, ProcessSerializer, DomainSerializer, ProjectCreateSerializer,\
-      DeveloperSerializer
-from .models import Project, Process, Domain, Developer
+from .serializers import ProjectSerializer, TaskSerializer, DepartmentSerializer, JobSerializer
+from .models import Project, Task, Job, Department
 from .filters import ProjectFilter
 # Create your views here.
+
+
+class JobListView(generics.ListAPIView):
+    queryset = Job.objects.all()
+    serializer_class = JobSerializer
+    http_method_names = ['get']
+
+
+class DepartmentListView(generics.ListAPIView):
+    queryset = Department
+    serializer_class = DepartmentSerializer
+    http_method_names = ['get']
 
 
 class ProjectViewSet(mixins.RetrieveModelMixin,
@@ -18,25 +29,9 @@ class ProjectViewSet(mixins.RetrieveModelMixin,
     filterset_class = ProjectFilter
 
 
-class ProcessListView(generics.ListAPIView):
-    queryset = Process.objects.all()
-    serializer_class = ProcessSerializer
+class TaskListView(generics.ListAPIView):
+    queryset = Task.objects.all()
+    serializer_class = TaskSerializer
     http_method_names = ['get']
 
 
-class DomainViewSet(viewsets.ModelViewSet):
-    queryset = Domain.objects.all()
-    serializer_class = DomainSerializer
-    http_method_names = ['post']
-
-
-class ProjectCreateApiView(generics.CreateAPIView):
-    queryset = Project.objects.all()
-    serializer_class = ProjectCreateSerializer
-    
-
-class DeveloperViewSet(viewsets.ModelViewSet):
-    queryset = Developer.objects.all()
-    serializer_class = DeveloperSerializer
-    http_method_names = ['get']
-    pagination_class = None
