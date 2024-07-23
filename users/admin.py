@@ -43,4 +43,4 @@ class UserAdmin(auth_admin.UserAdmin):
         )
 
     avatar.short_description = 'Логотип'
-    avatar.allow_tags = False
+    avatar.allow_tags = True
