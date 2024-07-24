@@ -6,7 +6,7 @@ from django.utils.safestring import mark_safe
 
 
 from .forms import UserAdminChangeForm
-from .forms import UserAdminCreationForm, DepartmentForm
+from .forms import UserAdminCreationForm
 from .models import User, Department
 
 admin.site.register(Department)
