@@ -55,6 +55,7 @@ class Project(models.Model):
     def __str__(self):
         return self.name
     
+    
     def is_completed(self):
         # Get the current date
         now = timezone.now().date()

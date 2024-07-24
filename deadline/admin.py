@@ -9,6 +9,6 @@ admin.site.register(Status)
 
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):
-    list_display = ('name','user','start_day', 'end_day')
+    list_display = ('name','user','start_day', 'end_day','is_finish')
     search_fields = ('name',)
     list_filter = ('start_day','end_day') 

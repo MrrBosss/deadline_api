@@ -17,7 +17,7 @@ class UserAdmin(auth_admin.UserAdmin):
     add_form = UserAdminCreationForm
     fieldsets = (
         (None, {"fields": ("username", "password")}),
-        (_("Personal info"), {"fields": ("name", "email", "avatar")}),
+        (_("Personal info"), {"fields": ("name", "email", "department", "avatar")}),
         (
             _("Permissions"),
             {
@@ -32,15 +32,15 @@ class UserAdmin(auth_admin.UserAdmin):
         ),
         (_("Important dates"), {"fields": ("last_login", "date_joined")}),
     )
-    list_display = ["avatar", "name", "is_superuser"]
+    list_display = ["get_avatar", "name", "is_superuser"]
     search_fields = ["name"]
-    list_display_links =  ['name','avatar']
+    list_display_links =  ['name','get_avatar']
     
-    def avatar(self, obj):
+    def get_avatar(self, obj):
         avatar = obj.avatar.url if obj.avatar else ""
         return mark_safe(
-            f'<img src="{avatar}" width="200"/>'  # if obj.logo_light else '<div>Rasmsiz</div>'
+            f'<img src="{avatar}" width="128" height="128"/>'  # if obj.logo_light else '<div>Rasmsiz</div>'
         )
 
-    avatar.short_description = 'Логотип'
-    avatar.allow_tags = True
+    get_avatar.short_description = 'Логотип'
+    get_avatar.allow_tags = True
