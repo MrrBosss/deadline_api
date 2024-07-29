@@ -1,5 +1,6 @@
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import generics
+from django.views.decorators.csrf import csrf_exempt
 
 from .serializers import ProjectSerializer, ListProjectSerializer, TaskSerializer, JobSerializer
 from .models import Project, Status, Job
@@ -11,13 +12,16 @@ class ProjectCreateView(generics.CreateAPIView):
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
 
-
+    
 class ProjectListView(generics.ListAPIView):
     queryset = Project.objects.all()
     serializer_class = ListProjectSerializer
     filter_backends = [DjangoFilterBackend]
     filterset_class = ProjectFilter
 
+    @csrf_exempt
+    def dispatch(self, *args, **kwargs):
+        return super(ProjectListView, self).dispatch(*args, **kwargs)
 
 class ProjectUpdateView(generics.UpdateAPIView):
     queryset = Project.objects.all()

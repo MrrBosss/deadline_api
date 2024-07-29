@@ -6,10 +6,12 @@ from .models import Project, Status, Job
 
 User = get_user_model()
 
+
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         fields = ("name", "avatar", "is_superuser")
         model = User
+
 
 class JobSerializer(serializers.ModelSerializer):
     class Meta:

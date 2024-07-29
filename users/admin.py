@@ -32,7 +32,7 @@ class UserAdmin(auth_admin.UserAdmin):
         ),
         (_("Important dates"), {"fields": ("last_login", "date_joined")}),
     )
-    list_display = ["get_avatar", "name", "is_superuser"]
+    list_display = ["get_avatar", "name", "department", "is_superuser"]
     search_fields = ["name"]
     list_display_links =  ['name','get_avatar']
     
