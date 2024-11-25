@@ -36,7 +36,7 @@ CORS_ALLOW_ALL_ORIGINS = True
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",  # React development server
-    "http://localhost:8000",  # production domain
+    "http://188.166.159.88"  # production domain
     # Add more origins as needed, or use '*' to allow any origin
 ]
 
